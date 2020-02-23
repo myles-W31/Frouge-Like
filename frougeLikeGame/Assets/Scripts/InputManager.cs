@@ -23,7 +23,7 @@ public class InputManager : MonoBehaviour
 
         SurfaceState();
 
-        GetAngleToMouse();
+        GetAngleToMouse(); 
     }
 
     public void Move()
@@ -35,29 +35,31 @@ public class InputManager : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W))
         {
-            player.GetComponent<Player>().direction = Vector3.forward;
+            player.GetComponent<Player>().direction += Vector3.forward;
             IncreaseVelocity();
         }
-        else if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A))
         {
-            player.GetComponent<Player>().direction = -Vector3.right;
+            player.GetComponent<Player>().direction += -Vector3.right;
             IncreaseVelocity();
         }
-        else if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S))
         {
-            player.GetComponent<Player>().direction = -Vector3.forward;
+            player.GetComponent<Player>().direction += -Vector3.forward;
             IncreaseVelocity();
         }
-        else if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
-            player.GetComponent<Player>().direction = Vector3.right;
+            player.GetComponent<Player>().direction += Vector3.right;
             IncreaseVelocity();
         }
-        else
-        {
-            player.GetComponent<Player>().velocity *=
-                player.GetComponent<Player>().deaccelerationMultiplier;
-        }
+
+        // Slow the player down by the deacceleration multiplier
+        player.GetComponent<Player>().velocity *=
+            player.GetComponent<Player>().deaccelerationMultiplier;
+
+        // Normalize the player's direction vector
+        player.GetComponent<Player>().direction.Normalize();
 
         // Move Player along velocity
         //velocity = speed * direction;
@@ -77,7 +79,7 @@ public class InputManager : MonoBehaviour
         switch (player.GetComponent<Player>().submergeState)
         {
             case SubmergeState.Surfaced:
-                if (Input.GetKey(KeyCode.Space))
+                if (Input.GetKeyDown(KeyCode.Space))
                     player.GetComponent<Player>().submergeState = SubmergeState.Submerging;
                 break;
 
@@ -88,12 +90,13 @@ public class InputManager : MonoBehaviour
                 }
                 else
                 {
+                    player.GetComponent<Player>().playerPosition.y = player.GetComponent<Player>().submergeDepth;
                     player.GetComponent<Player>().submergeState = SubmergeState.Submerged;
                 }
                 break;
 
             case SubmergeState.Submerged:
-                if (Input.GetKey(KeyCode.Space))
+                if (Input.GetKeyDown(KeyCode.Space))
                     player.GetComponent<Player>().submergeState = SubmergeState.Surfacing;
                 break;
 
@@ -104,6 +107,33 @@ public class InputManager : MonoBehaviour
                 }
                 else
                 {
+                    player.GetComponent<Player>().playerPosition.y = player.GetComponent<Player>().surfaceHeight;
+                    player.GetComponent<Player>().submergeState = SubmergeState.Surfaced;
+                }
+
+                if (Input.GetKeyDown(KeyCode.Space))
+                    player.GetComponent<Player>().submergeState = SubmergeState.Uppercut;
+                break;
+
+            case SubmergeState.Uppercut:
+                if (player.GetComponent<Player>().playerPosition.y < player.GetComponent<Player>().uppercutHeight)
+                {
+                    player.GetComponent<Player>().playerPosition.y += player.GetComponent<Player>().uppercutSpeed;
+                }
+                else
+                {
+                    player.GetComponent<Player>().submergeState = SubmergeState.UppercutEndLag;
+                }
+                break;
+
+            case SubmergeState.UppercutEndLag:
+                if (player.GetComponent<Player>().playerPosition.y > player.GetComponent<Player>().surfaceHeight)
+                {
+                    player.GetComponent<Player>().playerPosition.y -= player.GetComponent<Player>().uppercutSpeed;
+                }
+                else
+                {
+                    player.GetComponent<Player>().playerPosition.y = player.GetComponent<Player>().surfaceHeight;
                     player.GetComponent<Player>().submergeState = SubmergeState.Surfaced;
                 }
                 break;

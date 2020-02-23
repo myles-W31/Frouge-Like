@@ -336,11 +336,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 449c829a9327e9c4bade832728a57a1e,
-        type: 3}
-      propertyPath: m_Name
-      value: Player Character
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 449c829a9327e9c4bade832728a57a1e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -420,6 +415,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_CastShadows
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 449c829a9327e9c4bade832728a57a1e,
+        type: 3}
+      propertyPath: m_Name
+      value: Player Character
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 449c829a9327e9c4bade832728a57a1e, type: 3}
@@ -948,6 +948,8 @@ MonoBehaviour:
   surfaceHeight: 0.07
   submergeDepth: -0.1
   submergeSpeed: 0.01
+  uppercutHeight: 0.35
+  uppercutSpeed: 0.05
 --- !u!1001 &1797421499
 PrefabInstance:
   m_ObjectHideFlags: 0

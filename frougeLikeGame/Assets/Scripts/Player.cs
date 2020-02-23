@@ -7,7 +7,9 @@ public enum SubmergeState
     Surfaced,
     Surfacing,
     Submerged,
-    Submerging
+    Submerging,
+    Uppercut,
+    UppercutEndLag
 }
 
 public class Player : MonoBehaviour
@@ -33,6 +35,11 @@ public class Player : MonoBehaviour
     public float submergeDepth;
     // Speed at which the player dives and surfaces
     public float submergeSpeed;
+
+    // The height to which the player rises when performing an uppercut 
+    public float uppercutHeight;
+    // The speed at which the player performs an uppercut attack
+    public float uppercutSpeed;
 
     // Start is called before the first frame update
     void Start()

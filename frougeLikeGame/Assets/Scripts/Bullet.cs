@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    // The bullet class (at least how I imagine) will be a container of 
+    // individual bullet information. The bulletManager class will perform
+    // the function of all the bullets every frame.
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public Vector3 bulletPos;
+    public Vector3 bulletDir;
+    public Vector3 bulletVel;
 }

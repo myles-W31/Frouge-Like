@@ -112,7 +112,10 @@ public class InputManager : MonoBehaviour
                 }
 
                 if (Input.GetKeyDown(KeyCode.Space))
+                {
                     player.GetComponent<Player>().submergeState = SubmergeState.Uppercut;
+                    player.GetComponent<Player>().uppercutFX.GetComponent<ParticleSystem>().Play();
+                }
                 break;
 
             case SubmergeState.Uppercut:

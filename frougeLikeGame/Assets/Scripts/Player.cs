@@ -41,10 +41,17 @@ public class Player : MonoBehaviour
     // The speed at which the player performs an uppercut attack
     public float uppercutSpeed;
 
+    // Uppercut splash particle FX prefab
+    public GameObject uppercutFXPrefab;
+    public GameObject uppercutFX;
+
     // Start is called before the first frame update
     void Start()
     {
         submergeState = SubmergeState.Surfaced;
+
+        uppercutFX = Instantiate(uppercutFXPrefab,
+            playerPosition, Quaternion.Euler(-90, 0, 180));
     }
 
     // Update is called once per frame
@@ -61,5 +68,8 @@ public class Player : MonoBehaviour
         // Debug.Log(angleOfRotation);
         // Position vehicle
         transform.position = playerPosition;
+
+        // Set the FX system to the player's current position
+        uppercutFX.transform.position = playerPosition;
     }
 }

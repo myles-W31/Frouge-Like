@@ -7,6 +7,8 @@ public class InputManager : MonoBehaviour
     public GameObject player;
     public GameObject mainCamera;
 
+    public GameObject bulletManager;
+
     private Plane plane;
     private float distance;
 
@@ -81,6 +83,10 @@ public class InputManager : MonoBehaviour
             case SubmergeState.Surfaced:
                 if (Input.GetKeyDown(KeyCode.Space))
                     player.GetComponent<Player>().submergeState = SubmergeState.Submerging;
+
+                if (Input.GetMouseButtonDown(0))
+                    bulletManager.GetComponent<BulletManager>().FireBullet();
+
                 break;
 
             case SubmergeState.Submerging:

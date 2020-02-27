@@ -349,6 +349,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPosition: {x: 2.5, y: 0, z: -1.75}
   playerVector: {x: 0, y: 0, z: 0}
+  vertical: 1
 --- !u!1001 &478023981
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1297,6 +1298,41 @@ PrefabInstance:
     - target: {fileID: 2634488647982699107, guid: f0aa2f05213366c4787499504c963e0f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7484189830693421289, guid: f0aa2f05213366c4787499504c963e0f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7484189830693421289, guid: f0aa2f05213366c4787499504c963e0f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7484189830693421289, guid: f0aa2f05213366c4787499504c963e0f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.06938648
+      objectReference: {fileID: 0}
+    - target: {fileID: 7484189830693421289, guid: f0aa2f05213366c4787499504c963e0f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.07539463
+      objectReference: {fileID: 0}
+    - target: {fileID: 7484189830693421289, guid: f0aa2f05213366c4787499504c963e0f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7484189830693421289, guid: f0aa2f05213366c4787499504c963e0f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7484189830693421289, guid: f0aa2f05213366c4787499504c963e0f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8552414685963172225, guid: f0aa2f05213366c4787499504c963e0f,

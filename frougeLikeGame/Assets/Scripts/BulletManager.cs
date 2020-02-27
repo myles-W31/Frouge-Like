@@ -6,6 +6,7 @@ public class BulletManager : MonoBehaviour
 {
     public GameObject player;
     public GameObject enemy;
+    Enemy enem;
 
     public GameObject bulletPrefab;
     public float bulletSpeed;
@@ -21,6 +22,7 @@ public class BulletManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        enem = enemy.GetComponent<Enemy>();
         bulletList = new List<GameObject>();
     }
 
@@ -67,22 +69,18 @@ public class BulletManager : MonoBehaviour
     private void EnemyBullet()
     {
         time += Time.deltaTime;
-        if(time >= delay)
+        if(time > delay)
         {
-            time = 0.0f;
-            //instantiating new bullet, under swamp so it's not too early (good idea Sam c: )
-            GameObject newBullet = Instantiate(bulletPrefab, new Vector3(0, -10, 0), Quaternion.identity);
-            //using sam's code for now, might refactor so that it's not as long, will also make it so it has list of enemys instead of just 1
-            newBullet.GetComponent<Bullet>().bulletPos = new Vector3(enemy.GetComponent<Enemy>().enemyPosition.x,
-                enemy.GetComponent<Enemy>().enemyPosition.y - .055f,
-                enemy.GetComponent<Enemy>().enemyPosition.z);
+            GameObject bullet = Instantiate(bulletPrefab, new Vector3(0, -10, 0), Quaternion.identity);
+            bullet.GetComponent<Bullet>().bulletPos = new Vector3(enem.transform.position.x, enem.transform.position.y + .05f, enem.transform.position.z);
 
-            Vector3 bulletVel = new Vector3(Mathf.Sin(enemy.transform.GetChild(0).transform.rotation.y * Mathf.Deg2Rad), 0, enemy.transform.GetChild(0).transform.rotation.y * Mathf.Deg2Rad);
-            bulletVel.Normalize();
-            newBullet.GetComponent<Bullet>().bulletVel = bulletVel * bulletSpeed;
-
-            bulletList.Add(newBullet);
+            Vector3 bulletVelocity = enemy.transform.GetChild(0).transform.forward;
+            bullet.GetComponent<Bullet>().bulletVel = bulletVelocity * bulletSpeed;
+            bulletList.Add(bullet);
+            time = 0;
         }
+       
+
     }
 
     public void FireBullet()
